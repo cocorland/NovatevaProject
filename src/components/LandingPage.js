@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,19 +11,57 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import novateva from '../imgs/novateva.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const theme = createTheme();
 
 export default function LandingPage() {
+
+  const [completado, setCompletado] = useState('0');
+
+  const [formState, setFormState] = useState({
+    email: '',
+    password: ''
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // Revisar que todos los campos esten completos
+    if (data.get('email') !== '' & data.get('password') !== '') {
+      // Revisar que el correo electronico sea valido
+      if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email'))) {
+        setFormState({
+          email: data.get('email'),
+          password: data.get('password'),
+        });
+        setCompletado('1');
+      } else {
+        setCompletado('2');
+      }
+    } else {
+      setCompletado('3');
+    }
   };
+
+  useEffect(() => {
+    console.log(formState)
+  }, [formState]);
+
+  const displayErrorForm = (param) => {
+    switch (param) {
+      case param = '1':
+        return <Navigate to="/mainpage" />
+      case param = '3':
+        return <Alert severity="error">¡No has completado todos los campos obligatorios!</Alert>
+      case param = '2':
+        return <Alert severity="warning">¡Debes introducir una dirección de correo válida!</Alert>
+      default:
+        return <> </>
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -79,6 +118,9 @@ export default function LandingPage() {
                 id="password"
                 autoComplete="current-password"
               />
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                {displayErrorForm(completado)}
+              </Stack>
               <Button
                 type="submit"
                 fullWidth
