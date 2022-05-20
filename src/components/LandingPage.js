@@ -53,7 +53,7 @@ export default function LandingPage() {
   const displayErrorForm = (param) => {
     switch (param) {
       case param = '1':
-        return <Navigate to="/mainpage" />
+        return <Navigate to="/messenger" />
       case param = '3':
         return <Alert severity="error">¡No has completado todos los campos obligatorios!</Alert>
       case param = '2':
