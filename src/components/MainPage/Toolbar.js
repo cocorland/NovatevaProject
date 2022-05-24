@@ -164,7 +164,7 @@ export const ToolbarComponent = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="User search"
+              placeholder="Buscar usuario..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>

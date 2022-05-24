@@ -3,17 +3,29 @@
     display: flex;
 }
 .chatMenu{
-    flex: 3.5;
-}
-.chatBox{
-    flex: 5.5;
-}
-.chatOnline{
     flex: 3;
 }
+.chatBox{
+    flex: 6.5;
+}
+.chatOnline{
+    flex: 2.5;
+}
+.chatBoxWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chatBoxTop{
+    display: block;
+    height: 410px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    padding-right: 10px;
+  }
 .chatMenuWrapper,
-.chatBoxWrapper,
 .chatOnlineWrapper{
     padding: 10px;
     height: 100%;
 }
+
