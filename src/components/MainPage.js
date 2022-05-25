@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToolbarComponent } from './MainPage/Toolbar';
+import { ToolbarOrlando } from './MainPage/ToolbarOrlando';
 import { ChatMenu } from './MainPage/ChatMenu';
 import { Mensaje } from './mensajes/Mensaje';
 import { CajaDeChat } from './MainPage/CajaDeChat';
@@ -12,7 +12,7 @@ import { Contactsbar } from './MainPage/Contactsbar'; */
 export const MainPage = () => {
   return (
     <>
-      <ToolbarComponent />
+      <ToolbarOrlando />
       <div className='messenger'>
         <div className='chatMenu'>
           <div className='chatMenuWrapper'>
