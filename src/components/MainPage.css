@@ -1,31 +1,78 @@
-.messenger{
+.AccionesPrincipales {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fotoMensaje {
+    width: 30px;
+    height: 30px;
+}
+
+.fotoLupa {
+    width: 30px;
+    height: 30px;
+}
+
+.Rectangulo {
+    /* Rectangle */
+
+    width: 290px;
+    height: 539px;
+
+    background: transparent;
+    border: 2px solid #F0F0F0;
+    border-radius: 10px;
+    margin-right: 13px;
+    padding-left: 30px;
+    margin-left: -9px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.columnaDerecha {
+    flex: 10.6;
+    display: flex;
+}
+
+.columnaIzquierda {
+    display: flex;
+    flex-direction: column;
+}
+
+.messenger {
     height: calc(100vh - 70px);
     display: flex;
 }
-.chatMenu{
+
+.chatMenu {
     flex: 3;
 }
-.chatBox{
+
+.chatBox {
     flex: 6.5;
 }
-.chatOnline{
+
+.chatOnline {
     flex: 2.5;
 }
-.chatBoxWrapper{
+
+.chatBoxWrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.chatBoxTop{
+
+.chatBoxTop {
     display: block;
     height: 410px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     padding-right: 10px;
-  }
+}
+
 .chatMenuWrapper,
-.chatOnlineWrapper{
+.chatOnlineWrapper {
     padding: 10px;
     height: 100%;
 }
-
