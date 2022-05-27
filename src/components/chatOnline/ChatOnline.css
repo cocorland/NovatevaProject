@@ -3,13 +3,29 @@
     align-items: center;
     font-weight: 500;
     cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 3px;
-    padding-left: 5px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    padding-left: 15px;
+    margin-left: 1px;
+}
+
+.mensajesNoLeidos {
+    padding: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 50%;
+    background: linear-gradient(178.18deg, #FD749B -13.56%, #281AC8 158.3%);
+    color:white;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-style: normal;
+    font-size: 11px;
+    margin-left: 11px;
+    margin-right: 11px;
 }
 
 .chatOnlineFriend:hover{
     background-color: rgb(227, 220, 220);
+    border-radius: 10px;
 }
 
 .chatOnlineImg {
@@ -33,6 +49,50 @@
     top: 0;
     right: 9px;
 }
-/* chatOnline
-conversationImg
-chatOnlineName */
+
+.MensajeNoLeidoBadge {
+    width: 10px;
+    font-size: smaller;
+    height: 10px;
+    border-radius: 50%;
+    background-color: limegreen;
+    top: 0;
+    right: 9px;
+}
+
+.chatOnlineName {
+    color: #858585;
+    background-color: transparent;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-style: normal;
+    font-weight: 700;
+    margin-left: 11px;
+    padding-right: 20px;
+}
+
+.nombreConexion {
+    margin-top: -6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Conexion {
+    color: #858585;
+    background-color: transparent;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    margin-left: 11px;
+}
+
+.typing {
+    color: #858585;
+    background-color: transparent;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    margin-left: 11px;
+}
+

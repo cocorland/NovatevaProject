@@ -12,7 +12,12 @@ export const ChatOnline = () => {
           />
           <div className="chatOnlineBadge"></div>
         </div>
-        <span className="chatOnlineName">Orlando Chaparro </span>
+        <div className="nombreConexion">
+          <span className="chatOnlineName">Orlando Chaparro </span>
+          <span className="Conexion">Online</span>
+        </div>
+        <span className="typing">typing...</span>
+        <p className="mensajesNoLeidos">15</p>
       </div>
     </div>
   )
