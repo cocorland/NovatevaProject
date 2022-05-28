@@ -1,3 +1,51 @@
-.Chat {
-    flex: 2;
+.chatBoxColumn {
+    width: 724px;
+}
+
+.chatBoxWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 91%;
+    overflow-y: scroll;
+}
+
+.chatBoxBottom {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatMessageInput {
+    /* Rectangle 282 */
+    /* box-sizing: border-box; */
+    color:#484848;
+    background-color: transparent;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-style: normal;
+    font-weight: 400;
+    padding-left: 20px;
+    margin-left: 40px;
+    border-color: #FD749B;
+    width: 422px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 100px;
+}
+
+.chatMessageInput::placeholder{
+    color: #858585;
+    width: 200px;
+}
+
+.chatSubmitButton {
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 20px;
+    background: linear-gradient(178.18deg, #FD749B -13.56%, #281AC8 158.3%);
+    color:white;
+    src: url('../../fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    cursor: pointer;
 }

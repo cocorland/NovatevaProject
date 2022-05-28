@@ -4,8 +4,13 @@
     padding: 12px;
 }
 
+.Message.own {
+    align-items: flex-end;
+}
+
 .MessageOwnerHour {
-    margin-left: 20px;
+    max-width: 120px;
+    margin-left: 9px;
     padding: 7px;
     border-radius: 20px;
     color: #858585;
@@ -15,10 +20,33 @@
 } 
 
 .MessageText {
-    margin-left: 9px;
+    margin-left: 25px;
     padding: 10px;
     border-radius: 20px;
-    background-color: #dcdcdc;
+    background-color: rgb(228, 228, 228);
     color: #858585;
     max-width: 350px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.MessageOwnerHour.own {
+    max-width: 120px;
+    padding: 7px;
+    padding-left: 52px;
+    border-radius: 20px;
+    color: #858585;
+    background-color: #f0f0f0;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.MessageText.own {
+    padding: 10px;
+    margin-right: 25px;
+    border-radius: 20px;
+    background-color: #f4ffd3;;
+    color: #5c5c5c;
+    max-width: 350px;
+    font-size: 14px;
 }

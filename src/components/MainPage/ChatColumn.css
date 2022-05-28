@@ -1,20 +1,3 @@
-.chatColumn {
-    /* Rectangle 274 */
-
-    /* position: absolute; */
-    width: 273px;
-    height: 43.94px;
-    color: azure;
-    margin-top: 35px;
-    margin-right: 100px;
-    border-top: 4px;
-    background: linear-gradient(178.18deg, #FD749B -13.56%, #281AC8 158.3%);
-    margin-left: -9px;
-    border-radius: 20px;
-    margin-left: 0px;
-
-}
-
 .textoMensaje {
     height: 19.94px;
     margin-left: -49px;
@@ -29,4 +12,5 @@
     src: url('../../fonts/Poppins-Regular.ttf');
     font-style: normal;
     font-weight: 400;
+    cursor: pointer;
 }
