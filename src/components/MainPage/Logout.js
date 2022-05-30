@@ -1,7 +1,8 @@
 import React from 'react';
+import "./Logout.css";
 
 export const Logout = () => {
   return (
-    <p>Logout</p>
+    <div className="Logout">Logout</div>
   )
 }
