@@ -34,6 +34,12 @@ export const ContactosEnLinea = () => {
           <ChatOnline />
           <ChatOnline />
           <ChatOnline />
+          <ChatOnline />
+          <ChatOnline />
+          <ChatOnline />
+          <ChatOnline />                                 
+          <ChatOnline />
+
         </div>
         <button className="NewChatButton">New Chat</button>
       </div>
