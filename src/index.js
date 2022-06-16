@@ -6,11 +6,13 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    {/* BrowserRouter es un High Order Component (HOR) */}
+    {/* Todos los hijos tendran cierto acceso a la informacion que provee el padre. */}
+    {/* <React.StrictMode> */}
       <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    {/* </React.StrictMode> */}
+  </BrowserRouter>
 );
 
 

@@ -47,7 +47,7 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-    console.log(formState)
+    console.log("Este es el formState: ", formState);
   }, [formState]);
 
   const displayErrorForm = (param) => {

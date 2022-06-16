@@ -1,13 +1,33 @@
-import React from 'react';
-import { ChatOnline } from '../chatOnline/ChatOnline'
+import React, { useEffect, useState } from 'react';
+import { ChatOnline } from '../chatOnline/ChatOnline';
 import './ContactosEnLinea.css';
 
 export const ContactosEnLinea = () => {
+
+  const url_name = 'https://novateva-codetest.herokuapp.com/users';
+  const [contactos, setContactos] = useState([]);
+
+  const fetchApi = async () => {
+    try {
+      const response = await fetch(url_name)
+      console.log(response.status)
+      const responseJSON = await response.json()
+      const { users } = responseJSON
+      setContactos(users)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchApi();
+  }, [])
+
   return (
     <div className="ColumnaContactosEnLinea">
       <div className='Perfil'>
         <div className="ImagenContactoOnline">
-          {/* <div className="chatOnlineBadge"></div> */}
           <img
             className="ConversacionImg"
             src="https://avatars.githubusercontent.com/u/37028687?v=4"
@@ -22,24 +42,15 @@ export const ContactosEnLinea = () => {
       <hr />
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />
-          <ChatOnline />                                 
-          <ChatOnline />
-
+          {contactos.map
+            ((contacto) =>
+              <ChatOnline
+                nombre={contacto.firstName}
+                apellido={contacto.lastName}
+                key={contacto._id}
+              />
+            )
+          }
         </div>
         <button className="NewChatButton">New Chat</button>
       </div>

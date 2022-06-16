@@ -12,6 +12,7 @@
     padding-bottom: 6px;
     padding-left: 15px;
     margin-left: 1px;
+    justify-content: space-between;
 }
 
 .mensajesNoLeidos {
@@ -102,3 +103,12 @@
     margin-left: 11px;
 }
 
+.typingAndNoLeidos {
+    display: flex;
+    align-items: center;
+}
+
+.PhotoAndName {
+    display: flex;
+    align-items: center;
+}

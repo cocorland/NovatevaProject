@@ -9,6 +9,18 @@ export const Chats = () => {
       <div className="chatBoxWrapper">
         <Message />
         <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
+        <Message />
+        <Message own={ true }/>
       </div>
       <div className="chatBoxBottom">
         <textarea className="chatMessageInput" placeholder='Start typing here'></textarea>

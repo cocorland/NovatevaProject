@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -21,23 +22,36 @@ export default function SignUpPage() {
   const [completado, setCompletado] = useState('0');
 
   const [formState, setFormState] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    password: ''
+    "firstName": "",
+    "lastName": "",
+    "type": "consumer",
+    "email": "",
+    "password": "",
   });
+
+  const sendPOST = async (carga) => {
+    try {
+      axios.post('https://novateva-codetest.herokuapp.com/users', carga)
+        .then(res => {
+          console.log("Hablame");
+
+        });
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // Revisar que todos los campos esten completos
-    if (data.get('name') !== '' & data.get('lastname') !== '' & data.get('email') !== '' & data.get('password') !== '') {
+    if (data.get('firstName') !== '' & data.get('lastName') !== '' & data.get('email') !== '' & data.get('password') !== '') {
       // Revisar que el correo electronico sea valido
-      if ( /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email')) ) {
+      if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email'))) {
         setFormState({
           ...formState,
-          name: data.get('name'),
-          lastname: data.get('lastname'),
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
           email: data.get('email'),
           password: data.get('password'),
         });
@@ -51,7 +65,8 @@ export default function SignUpPage() {
   };
 
   useEffect(() => {
-    console.log(formState)
+    console.log(formState);
+    sendPOST(formState);
   }, [formState]);
 
   const displayErrorForm = (param) => {
@@ -90,7 +105,7 @@ export default function SignUpPage() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="off"
-                  name="name"
+                  name="firstName"
                   required
                   fullWidth
                   id="firstName"
@@ -104,7 +119,7 @@ export default function SignUpPage() {
                   fullWidth
                   id="lastName"
                   label="Apellido"
-                  name="lastname"
+                  name="lastName"
                   autoComplete="off"
                 />
               </Grid>
