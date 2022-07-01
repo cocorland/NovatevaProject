@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     padding: 10px;
     padding-bottom: 18px;
     background-color: white;
@@ -16,10 +16,20 @@
     z-index: initial;
 }
 
+.campana {
+    height: 19px;
+    width: 19px;
+    padding-top: 3px;
+    padding-left: 30px;
+    padding-right: 20px;
+    z-index: initial;
+    cursor: pointer;
+}
+
 .userSearch {
     /* Rectangle 282 */
     box-sizing: border-box;
-    color:#484848;
+    color: #484848;
     background-color: transparent;
 
     src: url('../../fonts/Poppins-Regular.ttf');
@@ -45,4 +55,28 @@
     color: #858585;
     mix-blend-mode: normal;
     opacity: 0.5;
+}
+
+.PerfilImg {
+    margin-top: 9px;
+    margin-left: 25px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+}
+
+.userLogged {
+    margin-top: 2px;
+    color: #858585;
+    max-width: 350px;
+    font-size: 16 px;
+    cursor: pointer;
 }

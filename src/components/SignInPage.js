@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,9 +22,21 @@ export default function SignInPage() {
   const [completado, setCompletado] = useState('0');
 
   const [formState, setFormState] = useState({
-    email: '',
-    password: ''
+    "email": '',
+    "password": ''
   });
+
+  const sendPOST = async (carga) => {
+    try {
+      axios.post('https://novateva-codetest.herokuapp.com/login', carga)
+        .then(res => {
+          console.log("Hablame");
+
+        });
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,9 +58,10 @@ export default function SignInPage() {
     }
   };
 
-  useEffect(() => {
-    console.log(formState)
-  }, [formState]);
+/*   useEffect(() => {
+    console.log(formState);
+    sendPOST(formState);
+  }, [formState]); */
 
   const displayErrorForm = (param) => {
     switch (param) {

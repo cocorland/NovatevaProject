@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,14 +21,8 @@ const theme = createTheme();
 export default function SignUpPage() {
 
   const [completado, setCompletado] = useState('0');
-
-  const [formState, setFormState] = useState({
-    "firstName": "",
-    "lastName": "",
-    "type": "consumer",
-    "email": "",
-    "password": "",
-  });
+  
+  const { formState, setFormState } = useContext( UserContext );
 
   const sendPOST = async (carga) => {
     try {

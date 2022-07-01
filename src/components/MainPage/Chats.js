@@ -8,17 +8,7 @@ export const Chats = () => {
     <div className="chatBoxColumn">
       <div className="chatBoxWrapper">
         <Message />
-        <Message own={ true }/>
-        <Message />
-        <Message own={ true }/>
-        <Message />
-        <Message own={ true }/>
-        <Message />
-        <Message own={ true }/>
-        <Message />
-        <Message own={ true }/>
-        <Message />
-        <Message own={ true }/>
+        
         <Message />
         <Message own={ true }/>
       </div>

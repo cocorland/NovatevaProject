@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { ChatOnline } from '../chatOnline/ChatOnline';
 import './ContactosEnLinea.css';
 
 export const ContactosEnLinea = () => {
+
+  const { formState } = useContext( UserContext );
+  console.log( formState );
 
   const url_name = 'https://novateva-codetest.herokuapp.com/users';
   const [contactos, setContactos] = useState([]);
@@ -35,7 +39,7 @@ export const ContactosEnLinea = () => {
           />
         </div>
         <div className="UsuarioConexion">
-          <span className="nombreConversacion">Orlando Chaparro</span>
+          <span className="nombreConversacion">{`${formState.firstName} ${formState.lastName}`}</span>
           <span className="conexionActual">Online</span>
         </div>
       </div>
