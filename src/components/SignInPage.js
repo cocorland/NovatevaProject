@@ -9,47 +9,42 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { UserContext } from '../context/UserContext';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+
 
 const theme = createTheme();
 
 export default function SignInPage() {
 
-  const [completado, setCompletado] = useState('0');
 
-  const [formState, setFormState] = useState({
+  const [completado, setCompletado] = useState('0');
+  const [autorizado, setAutorizado] = useState('0');
+
+  const [formSignIn, setFormSignIn] = useState({
     "email": '',
     "password": ''
   });
 
-  const sendPOST = async (carga) => {
-    try {
-      axios.post('https://novateva-codetest.herokuapp.com/login', carga)
-        .then(res => {
-          console.log("Hablame");
+  const { formState, setFormState } = useContext(UserContext);
 
-        });
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('email') !== '' & data.get('password') !== '') {
       // Revisar que el correo electronico sea valido
-      if ( /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email')) ) {
-        setFormState({
-          ...formState,
+      if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email'))) {
+        setFormSignIn({
+          ...formSignIn,
           email: data.get('email'),
           password: data.get('password')
         });
-        setCompletado('1');
+        /* setCompletado('1'); */
       } else {
         setCompletado('2');
       }
@@ -58,19 +53,44 @@ export default function SignInPage() {
     }
   };
 
-/*   useEffect(() => {
-    console.log(formState);
-    sendPOST(formState);
-  }, [formState]); */
+  useEffect(() => {
+    const sendPOST = async (carga = {"email": '', "password": ''}) => {
+      try {
+        await axios.post('https://novateva-codetest.herokuapp.com/login', carga)
+          .then(res => {
+            setAutorizado(res.data.success)  
+            console.log("La respuesta de la peticion es: ", autorizado);
+          });
+        } catch (error) {
+          if (formSignIn.email == '' && formSignIn.password == '') {
+            setAutorizado('0');
+          } else {
+            setAutorizado(error.response.data.success);
+          }
+
+      }
+    }
+    sendPOST(formSignIn);
+    console.log("El formSignIn es: ", formSignIn);
+  }, [formSignIn]);
 
   const displayErrorForm = (param) => {
     switch (param) {
-      case param = '1':
-        return <Navigate to="/messenger" />
       case param = '3':
         return <Alert severity="error">¡No has completado todos los campos obligatorios!</Alert>
       case param = '2':
         return <Alert severity="warning">¡Debes introducir una dirección de correo válida!</Alert>
+      default:
+        return <> </>
+    }
+  }
+
+  const displayNoAuthenticatedForm = (param) => {
+    switch (param) {
+      case param = true:
+        return <Navigate to="/messenger" />
+      case param = false:
+        return <Alert severity="error">Correo electrónico o contraseña incorrecta.</Alert>
       default:
         return <> </>
     }
@@ -117,6 +137,9 @@ export default function SignInPage() {
             />
             <Stack sx={{ width: '100%' }} spacing={2}>
               {displayErrorForm(completado)}
+            </Stack>
+            <Stack sx={{ width: '100%' }} spacing={2}>
+              {displayNoAuthenticatedForm(autorizado)}
             </Stack>
             <Button
               type="submit"
