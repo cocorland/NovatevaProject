@@ -21,8 +21,8 @@ const theme = createTheme();
 export default function SignUpPage() {
 
   const [completado, setCompletado] = useState('0');
-  
-  const { formState, setFormState } = useContext( UserContext );
+
+  const { formState, setFormState } = useContext(UserContext);
 
   const sendPOST = async (carga) => {
     try {
@@ -61,8 +61,22 @@ export default function SignUpPage() {
 
   useEffect(() => {
     console.log(formState);
-    sendPOST(formState);
-  }, [formState]);
+    const {
+      firstName,
+      lastName,
+      type,
+      email,
+      password,
+    } = formState;
+    sendPOST(
+      {
+        firstName,
+        lastName,
+        type,
+        email,
+        password,
+      })
+    }, [formState]);
 
   const displayErrorForm = (param) => {
     switch (param) {

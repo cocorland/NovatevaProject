@@ -5,18 +5,21 @@ import { UserContext } from './UserContext'
 
 export const UserProvider = ({ children }) => {
   /* Componente funcional, acceso a hooks. */
-  const [formState, setFormState] = useState({
-    "firstName": "",
-    "lastName": "",
-    "type": "consumer",
-    "email": "",
-    "password": "",
-  });
+  const [formState, setFormState] = useState(
+    {
+      "firstName": "",
+      "lastName": "",
+      "type": "consumer",
+      "email": "",
+      "password": "",
+      "users": [],
+    },
+  );
 
   return (
     /* Lo que esta dentro del value es lo que cualquier hijo podra ver en el context */
     <UserContext.Provider value={{ formState, setFormState }}>
-        { children }
+      {children}
     </UserContext.Provider>
   )
 }

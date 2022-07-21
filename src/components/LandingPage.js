@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import novateva from '../imgs/novateva.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, Navigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
@@ -21,10 +24,30 @@ export default function LandingPage() {
 
   const [completado, setCompletado] = useState('0');
 
-  const [formState, setFormState] = useState({
+  const [formSignIn, setFormSignIn] = useState({
     email: '',
     password: ''
   });
+
+  const { formState, setFormState } = useContext(UserContext);
+
+  useEffect(() => {
+    const sendGET = async () => {
+      try {
+        await axios.get('https://novateva-codetest.herokuapp.com/users')
+          .then(res => {
+            console.log(res.data.users);
+            setFormState({
+              ...formState,
+              users: res.data.users,
+            });
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    sendGET();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +56,7 @@ export default function LandingPage() {
     if (data.get('email') !== '' & data.get('password') !== '') {
       // Revisar que el correo electronico sea valido
       if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.get('email'))) {
-        setFormState({
+        setFormSignIn({
           email: data.get('email'),
           password: data.get('password'),
         });
@@ -47,8 +70,8 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-    console.log("Este es el formState: ", formState);
-  }, [formState]);
+    console.log("Este es el formSignIn: ", formSignIn);
+  }, [formSignIn]);
 
   const displayErrorForm = (param) => {
     switch (param) {

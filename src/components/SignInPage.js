@@ -58,7 +58,18 @@ export default function SignInPage() {
       try {
         await axios.post('https://novateva-codetest.herokuapp.com/login', carga)
           .then(res => {
-            setAutorizado(res.data.success)  
+            const {users} = formState;
+            const nombreUsuario = users.find(element => element.email === carga.email);
+            
+            setFormState({
+              ...formState,
+              firstName: nombreUsuario.firstName,
+              lastName: nombreUsuario.lastName,
+              email: nombreUsuario.email,
+              password: nombreUsuario.password,
+            });
+
+            setAutorizado(res.data.success);
             console.log("La respuesta de la peticion es: ", autorizado);
           });
         } catch (error) {

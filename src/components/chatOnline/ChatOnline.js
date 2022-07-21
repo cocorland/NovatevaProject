@@ -3,8 +3,13 @@ import React from "react";
 
 export const ChatOnline = ({ nombre, apellido }) => {
 
+  const handleClickChat = (e) => {
+    e.preventDefault();
+    console.log("Maldita sea");
+  }
+
   return (
-    <div className="chatOnline">
+    <div className="chatOnline" onClick={ (e) => handleClickChat(e) }>
       <div className="chatOnlineFriend">
         <div className="PhotoAndName">
           <div className="chatOnlineImgContainer">
