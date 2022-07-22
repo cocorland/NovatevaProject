@@ -60,13 +60,17 @@ export default function SignInPage() {
           .then(res => {
             const {users} = formState;
             const nombreUsuario = users.find(element => element.email === carga.email);
+            /* console.log("El elemento nombreUsuario es: ", nombreUsuario); */
             
+            /* Si no se ha cargado por primera vez la pagina principal, no habrá nada en contexto y por lo tanto, nombreUsuario sera undefined, implica que el programa no corre. */
             setFormState({
               ...formState,
               firstName: nombreUsuario.firstName,
               lastName: nombreUsuario.lastName,
               email: nombreUsuario.email,
               password: nombreUsuario.password,
+              id: nombreUsuario._id,
+              token: res.data.authorization
             });
 
             setAutorizado(res.data.success);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { ChatOnline } from '../chatOnline/ChatOnline';
+import mate from '../../imgs/mate.png';
 import './ContactosEnLinea.css';
 
 export const ContactosEnLinea = () => {
@@ -34,7 +35,7 @@ export const ContactosEnLinea = () => {
         <div className="ImagenContactoOnline">
           <img
             className="ConversacionImg"
-            src="https://avatars.githubusercontent.com/u/37028687?v=4"
+            src={mate}
             alt=""
           />
         </div>
@@ -51,6 +52,7 @@ export const ContactosEnLinea = () => {
               <ChatOnline
                 nombre={contacto.firstName}
                 apellido={contacto.lastName}
+                llave={contacto._id}
                 key={contacto._id}
               />
             )

@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { UserContext } from './UserContext'
 
-
-
 export const UserProvider = ({ children }) => {
   /* Componente funcional, acceso a hooks. */
   const [formState, setFormState] = useState(
@@ -12,7 +10,9 @@ export const UserProvider = ({ children }) => {
       "type": "consumer",
       "email": "",
       "password": "",
+      "id": "",
       "users": [],
+      "token": "",
     },
   );
 

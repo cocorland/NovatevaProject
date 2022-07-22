@@ -1,5 +1,6 @@
 import React from 'react';
 import lupa from '../../imgs/icone-loupe-gris.png';
+import mate from '../../imgs/mate.png';
 import campana from '../../imgs/77682.png';
 import "./ToolbarOrlando.css";
 import { UserContext } from '../../context/UserContext';
@@ -18,7 +19,8 @@ export const ToolbarOrlando = () => {
       <div className="usuario">
         <img
           className="PerfilImg"
-          src="https://avatars.githubusercontent.com/u/37028687?v=4"
+          /* src="https://avatars.githubusercontent.com/u/37028687?v=4" */
+          src={mate}
           alt=""
         />
         <span className='userLogged'>{`${formState.firstName} ${formState.lastName}`}</span>
