@@ -6,13 +6,11 @@ import './ChatOnline.css';
 
 export const ChatOnline = ({ nombre, apellido, llave }) => {
 
-  const { formState, setFormState } = useContext(UserContext);
+  const { formState } = useContext(UserContext);
   const { id, token } = formState
 
   const handleClickChat = (e, llave) => {
     e.preventDefault();
-
-    console.log("El id del usuario es: ", llave);
 
     const initiateUserChat = async (token, ID, friendID) => {
       try {
@@ -27,14 +25,16 @@ export const ChatOnline = ({ nombre, apellido, llave }) => {
             }
           })
           .then(res => {
-
-            console.log("La respuesta es: ", res);
+            
+            console.log("El id de mi usuario es: ", ID);
+            console.log("El id de mi amigo es: ", friendID);
+            console.log("Mi token de usuario autenticado es: ", token);
+            console.log("La respuesta es: ", res.data);
           })
       } catch (error) {
         console.log(error);
       }
     }
-    /* Vamos a cablear el chat para que hablemos con Lorenzo Pachioli */
     initiateUserChat(token, id, llave);
   }
 

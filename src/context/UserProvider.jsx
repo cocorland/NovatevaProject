@@ -13,6 +13,8 @@ export const UserProvider = ({ children }) => {
       "id": "",
       "users": [],
       "token": "",
+      "chats": [],
+      "mensajes": [],
     },
   );
 

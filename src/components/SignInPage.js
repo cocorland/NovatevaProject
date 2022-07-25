@@ -32,7 +32,6 @@ export default function SignInPage() {
 
   const { formState, setFormState } = useContext(UserContext);
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,7 +43,6 @@ export default function SignInPage() {
           email: data.get('email'),
           password: data.get('password')
         });
-        /* setCompletado('1'); */
       } else {
         setCompletado('2');
       }
@@ -54,16 +52,17 @@ export default function SignInPage() {
   };
 
   useEffect(() => {
-    const sendPOST = async (carga = {"email": '', "password": ''}) => {
+    const sendPOST = async (carga = { "email": '', "password": '' }) => {
       try {
         await axios.post('https://novateva-codetest.herokuapp.com/login', carga)
           .then(res => {
-            const {users} = formState;
+            const { users } = formState;
             const nombreUsuario = users.find(element => element.email === carga.email);
             /* console.log("El elemento nombreUsuario es: ", nombreUsuario); */
-            
+
             /* Si no se ha cargado por primera vez la pagina principal, no habrá nada en contexto y por lo tanto, nombreUsuario sera undefined, implica que el programa no corre. */
-            setFormState({
+
+            /* setFormState({
               ...formState,
               firstName: nombreUsuario.firstName,
               lastName: nombreUsuario.lastName,
@@ -71,18 +70,47 @@ export default function SignInPage() {
               password: nombreUsuario.password,
               id: nombreUsuario._id,
               token: res.data.authorization
-            });
+            }); */
 
+            /* Se realiza un GET para obtener todos los chats que el usuario tiene con los demás usuarios. */
+            const sendGET = async (accessToken) => {
+              try {
+                await axios.get('https://novateva-codetest.herokuapp.com/room/',
+                  {
+                    headers: {
+                      'Authorization': `Bearer ${accessToken}`
+                    }
+                  })
+                  .then(res => {
+
+                    setFormState({
+                      ...formState,
+                      firstName: nombreUsuario.firstName,
+                      lastName: nombreUsuario.lastName,
+                      email: nombreUsuario.email,
+                      password: nombreUsuario.password,
+                      id: nombreUsuario._id,
+                      token: accessToken,
+                      chats: res.data.conversation
+                    });
+
+                  });
+              } catch (error) {
+                console.log(error);
+              }
+            }
+
+            sendGET(res.data.authorization);
             setAutorizado(res.data.success);
             console.log("La respuesta de la peticion es: ", autorizado);
           });
-        } catch (error) {
-          if (formSignIn.email == '' && formSignIn.password == '') {
-            setAutorizado('0');
-          } else {
-            setAutorizado(error.response.data.success);
-          }
-
+      } catch (error) {
+        if (formSignIn.email === '' && formSignIn.password === '') {
+          setAutorizado('0');
+        } else {
+          setCompletado('4');
+          /* setAutorizado(error.response.data.success); */
+        }
       }
     }
     sendPOST(formSignIn);
@@ -95,6 +123,8 @@ export default function SignInPage() {
         return <Alert severity="error">¡No has completado todos los campos obligatorios!</Alert>
       case param = '2':
         return <Alert severity="warning">¡Debes introducir una dirección de correo válida!</Alert>
+      case param = '4':
+        return <Alert severity="error">No se encontró un usuario con esa combinación de correo electrónico y contraseña</Alert>
       default:
         return <> </>
     }
