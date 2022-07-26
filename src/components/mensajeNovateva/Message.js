@@ -1,7 +1,7 @@
 import React from 'react';
 import './Message.css';
 
-export const Message = ({own}) => {
+export const Message = ({ own, mensaje }) => {
   return (
     <>
       <div className={ own ? "Message own" : "Message" }>
@@ -9,7 +9,7 @@ export const Message = ({own}) => {
           Orlando, 10:22
         </div>
         <div className={ own ? "MessageText own" : "MessageText"}>
-          Hola
+          { mensaje.messageText }
         </div>
       </div>
     </>

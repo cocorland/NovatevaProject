@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
       "token": "",
       "chats": [],
       "mensajes": [],
+      "roomChatId": "",
     },
   );
 
