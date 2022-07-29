@@ -2,6 +2,9 @@ import React from 'react';
 import './Message.css';
 
 export const Message = ({ own, mensaje }) => {
+
+  console.log("El mensaje es: ", mensaje);
+  
   return (
     <>
       <div className={ own ? "Message own" : "Message" }>
