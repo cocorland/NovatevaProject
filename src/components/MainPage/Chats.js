@@ -15,11 +15,12 @@ export const Chats = () => {
         {formState.mensajes ?
           formState.mensajes.map
             (
-              (mensaje) =>
+              (m) =>
                 <Message
+                  name={formState.firstName}
                   own={true}
-                  mensaje={mensaje.message}
-                  key={mensaje._id}
+                  message={m}
+                  key={m._id}
                 />
             )
           : <></>}

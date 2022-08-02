@@ -51,6 +51,10 @@ export const ChatOnline = ({ nombre, apellido, llave }) => {
         mensajes: mensajes.messages
       })
     } else {
+      setFormState({
+        ...formState,
+        mensajes: []
+      });
       console.log("No se han cargado mensajes");
     }
   }, [roomChatId]);

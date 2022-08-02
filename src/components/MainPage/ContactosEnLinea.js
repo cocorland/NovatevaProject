@@ -7,7 +7,7 @@ import './ContactosEnLinea.css';
 export const ContactosEnLinea = () => {
 
   const { formState } = useContext( UserContext );
-  console.log( formState );
+  console.log("El formState (Context) es: ", formState );
 
   const url_name = 'https://novateva-codetest.herokuapp.com/users';
   const [contactos, setContactos] = useState([]);
@@ -48,12 +48,12 @@ export const ContactosEnLinea = () => {
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
           {contactos.map
-            ((contacto) =>
+            ((c) =>
               <ChatOnline
-                nombre={contacto.firstName}
-                apellido={contacto.lastName}
-                llave={contacto._id}
-                key={contacto._id}
+                nombre={c.firstName}
+                apellido={c.lastName}
+                llave={c._id}
+                key={c._id}
               />
             )
           }
